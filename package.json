@@ -1,0 +1,38 @@
+{
+  "name": "atividade-mensageria-marketplace",
+  "version": "1.0.0",
+  "description": "Consumidor de pedidos e API REST da atividade de mensageria",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node src/server.ts",
+    "consumer": "node dist/messaging/start.js",
+    "example": "node dist/messaging/publish-example.js"
+  },
+  "keywords": [
+    "mensageria",
+    "pedidos",
+    "rest-api",
+    "typescript",
+    "express"
+  ],
+  "author": "Equipe PI 6º Semestre",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^2.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.8",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "@types/pg": "^8.23.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
