@@ -1,0 +1,8 @@
+node_modules
+dist
+.git
+.npm-cache
+*.log
+*-key.json
+google-credentials.json
+service-account*.json

@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: orders_db
+      POSTGRES_USER: orders_user
+      POSTGRES_PASSWORD: orders_password
+    volumes:
+      - orders_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orders_user -d orders_db"]
+      interval: 3s
+      retries: 20
+
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      ORDERS_DATABASE_URL: postgres://orders_user:orders_password@postgres:5432/orders_db
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  consumer:
+    build: .
+    command: node dist/messaging/start.js
+    environment:
+      ORDERS_DATABASE_URL: postgres://orders_user:orders_password@postgres:5432/orders_db
+      GOOGLE_APPLICATION_CREDENTIALS: /run/secrets/sa-grupo-i-key.json
+      GOOGLE_CLOUD_PROJECT: serjava-demo
+      PUBSUB_SUBSCRIPTION: projects/serjava-demo/subscriptions/grupo-i
+      PUBSUB_AUTO_CREATE: "false"
+    volumes:
+      - ./sa-grupo-i-key.json:/run/secrets/sa-grupo-i-key.json:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  orders_pgdata:

@@ -2,3 +2,5 @@ node_modules/
 dist/
 .env
 .npm-cache/
+*-key.json
+google-credentials.json

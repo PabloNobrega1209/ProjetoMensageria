@@ -17,17 +17,16 @@
     "typescript",
     "express"
   ],
-  "author": "Equipe PI 6º Semestre",
+  "author": "Grupo I - Hugo, Pablo e Arthur",
   "license": "ISC",
   "dependencies": {
-    "amqplib": "^2.0.1",
+    "@google-cloud/pubsub": "^6.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "pg": "^8.23.0"
   },
   "devDependencies": {
-    "@types/amqplib": "^0.10.8",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.7",

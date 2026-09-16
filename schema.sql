@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS order_customers (id BIGINT PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL, document TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS order_sellers (id BIGINT PRIMARY KEY, name TEXT NOT NULL, city TEXT NOT NULL, state TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS order_products (id TEXT PRIMARY KEY, title TEXT NOT NULL);
-CREATE TABLE IF NOT EXISTS orders (uuid TEXT PRIMARY KEY, created_at TIMESTAMPTZ NOT NULL, indexed_at TIMESTAMPTZ NOT NULL DEFAULT now(), channel TEXT NOT NULL, status TEXT NOT NULL CHECK (status IN ('created','paid','shipped','delivered','canceled')), customer_id BIGINT NOT NULL REFERENCES order_customers(id), seller_id BIGINT NOT NULL REFERENCES order_sellers(id), shipment JSONB, payment JSONB, metadata JSONB);
+CREATE TABLE IF NOT EXISTS orders (uuid TEXT PRIMARY KEY, created_at TIMESTAMPTZ NOT NULL, indexed_at TIMESTAMPTZ NOT NULL DEFAULT now(), channel TEXT NOT NULL, status TEXT NOT NULL, customer_id BIGINT NOT NULL REFERENCES order_customers(id), seller_id BIGINT NOT NULL REFERENCES order_sellers(id), shipment JSONB, payment JSONB, metadata JSONB);
 CREATE TABLE IF NOT EXISTS order_items (order_uuid TEXT NOT NULL REFERENCES orders(uuid) ON DELETE CASCADE, id BIGINT NOT NULL, product_id TEXT NOT NULL REFERENCES order_products(id), unit_price NUMERIC(14,2) NOT NULL CHECK (unit_price >= 0), quantity INTEGER NOT NULL CHECK (quantity > 0), category JSONB NOT NULL, PRIMARY KEY (order_uuid,id));
 CREATE INDEX IF NOT EXISTS orders_created_at_idx ON orders(created_at DESC);
 CREATE INDEX IF NOT EXISTS orders_customer_idx ON orders(customer_id);
