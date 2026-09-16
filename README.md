@@ -19,12 +19,3 @@ erDiagram
     order_items { string order_uuid PK,FK bigint id PK string product_id FK decimal unit_price int quantity }
 ```
 
-## Próximas contribuições
-
-| Integrante | Parte | Arquivos previstos |
-|---|---|---|
-| Hugo | Banco, DER e base TypeScript | `schema.sql`, `README.md`, `package.json`, `package-lock.json`, `tsconfig.json`, `.gitignore` |
-| Pablo | Consumidor RabbitMQ e gravação transacional | `src/messaging/store.ts`, `consumer.ts`, `start.ts`, `publish-example.ts` |
-| Arthur | API REST, filtros, resumo financeiro e demonstração | `src/messaging/orders.routes.ts`, `src/server.ts`, `Dockerfile`, `docker-compose.yml` |
-
-Pablo e Arthur devem atualizar este guia com os detalhes de execução ao concluir suas partes. O nome completo de Arthur ainda precisa ser confirmado.
