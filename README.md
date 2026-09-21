@@ -20,14 +20,23 @@ Para acompanhar as mensagens recebidas pelo consumer:
 docker compose logs -f consumer
 ```
 
-A API fica disponível na porta 3000.
+A API e o **Painel Web (Dashboard)** ficam disponíveis na porta 3000.
 
-Alguns exemplos:
+* Dashboard Web: `http://localhost:3000/`
+* Endpoints REST:
+  * `http://localhost:3000/orders`
+  * `http://localhost:3000/orders/ORD-2026-0001`
+  * `http://localhost:3000/orders/ORD-2026-0001/items`
+  * `http://localhost:3000/orders/financial-summary`
 
-* `http://localhost:3000/orders`
-* `http://localhost:3000/orders/ORD-2026-0001`
-* `http://localhost:3000/orders/ORD-2026-0001/items`
-* `http://localhost:3000/orders/financial-summary`
+## Front-End (Painel de Controle Web)
+
+O projeto conta com uma interface Web interativa e responsiva desenvolvida em HTML5, Tailwind CSS e JavaScript:
+
+* **Métricas Financeiras & KPIs**: Total de pedidos, receita acumulada, ticket médio e detalhamento de vendas por método de pagamento.
+* **Distribuição de Status**: Visualização em tempo real do volume de pedidos por status (`created`, `paid`, `separated`, `shipped`, `delivered`, `canceled`).
+* **Filtros Interativos**: Filtragem por status, ID do cliente, ID do vendedor e ID do produto com suporte a paginação ajustável.
+* **Modal de Detalhes do Pedido**: Exibição completa de dados do cliente, vendedor, frete/pagamento (JSONB) e tabela de itens.
 
 Para parar os containers:
 

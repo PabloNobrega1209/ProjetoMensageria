@@ -3,6 +3,7 @@ import { ordersRouter } from './messaging/orders.routes';
 import { initOrdersSchema } from './messaging/store';
 
 const app = express();
+app.use(express.static('public'));
 app.get('/health', (_req, res) => res.json({ status: 'online' }));
 app.use('/orders', ordersRouter);
 
