@@ -1,4 +1,4 @@
-﻿# Estágio de Build
+# Estágio de Build
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json tsconfig.json ./
@@ -13,6 +13,7 @@ ENV NODE_ENV=production
 COPY package*.json ./
 RUN npm ci --only=production
 COPY --from=builder /app/dist ./dist
+COPY public/ ./public/
 COPY schema.sql ./schema.sql
 
 EXPOSE 3000
